@@ -216,68 +216,6 @@ iter = 30
 
 #returns a prediction of the test data
 
-def predict(w, testing):
-    #print(testing)
-    prediction = [1 for j in range(len(testing))]
-    for i in range(len(testing)):
-        L = np.dot(testing[i], w)
-        # activation func
-        #prediction = 1/(1+np.exp(L))
-        prediction[i] = L
-        """
-        if L > 0:
-            prediction[i] = 1
-        else:
-            prediction[i] = -1
-        """
-    return prediction
-
-def accuracy(prediction, ytesting):
-    a = 0
-    """
-    for i in range(len(prediction)):
-        if prediction[i] == ytesting[i]:
-            a+=1
-    #return a/len(prediction)
-    """
-    for i in range(len(prediction)):
-        a+= abs(prediction[i]-ytesting[i])
-    return a
-
-def perceptron(weight, X, Y, learningrate, iters, test, ytest):
-    w = []
-    acc = accuracy(predict(weight, test), ytest)
-    w.append(acc)
-    prediction = [1 for j in range(len(X))]
-
-    # goes through each row
-    for j in range(iters):
-        for i in range(len(X)):
-            L = np.dot(X[i], weight)
-            # activation func
-            """
-            if L > 0:
-                sign = 1
-            else:
-                sign = -1
-            """
-
-            prediction[i] = L
-
-            # wnew = wold - learn*diff*x_i
-            # print(y[i])
-            # L = -np.log(1/np.exp(prediction[i] - ytraining[i]))
-            diff = prediction[i] - Y[i]
-            #L = np.sum(abs(diff * X[i]))
-            #print(diff)
-            #The number gets too big
-            weight = weight - (learningrate * diff * X[i])
-            # print(len(randomSamp[i]))
-        acc = accuracy(predict(weight, test), ytest)
-        w.append(acc)
-
-    return weight, prediction, w
-
 # initialize weights array
 """
 weight = [1 for b in range(25)]
